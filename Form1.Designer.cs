@@ -44,7 +44,7 @@
             this.SavedCampusesLabel = new System.Windows.Forms.Label();
             this.SavedCampusesComboBox = new System.Windows.Forms.ComboBox();
             this.AddRoomsTextBox = new System.Windows.Forms.TextBox();
-            this.AddOrRemoveStudents = new System.Windows.Forms.TextBox();
+            this.AddOrRemoveStudentsTextBox = new System.Windows.Forms.TextBox();
             this.RevenuePeriodComboBox = new System.Windows.Forms.ComboBox();
             this.CloneCampusBtn = new System.Windows.Forms.Button();
             this.SelectedCampusLabel = new System.Windows.Forms.Label();
@@ -52,6 +52,8 @@
             this.AddStudentBtn = new System.Windows.Forms.Button();
             this.RemoveStudentsBtn = new System.Windows.Forms.Button();
             this.CalculateRevenueBtn = new System.Windows.Forms.Button();
+            this.ShowInfoBtn = new System.Windows.Forms.Button();
+            this.AddDiningRoomBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // AddCampusBtn
@@ -62,6 +64,7 @@
             this.AddCampusBtn.TabIndex = 0;
             this.AddCampusBtn.Text = "Add Campus";
             this.AddCampusBtn.UseVisualStyleBackColor = true;
+            this.AddCampusBtn.Click += new System.EventHandler(this.AddCampusBtn_Click);
             // 
             // UniversityNameTextBox
             // 
@@ -183,12 +186,12 @@
             this.AddRoomsTextBox.Size = new System.Drawing.Size(125, 27);
             this.AddRoomsTextBox.TabIndex = 15;
             // 
-            // AddOrRemoveStudents
+            // AddOrRemoveStudentsTextBox
             // 
-            this.AddOrRemoveStudents.Location = new System.Drawing.Point(663, 267);
-            this.AddOrRemoveStudents.Name = "AddOrRemoveStudents";
-            this.AddOrRemoveStudents.Size = new System.Drawing.Size(125, 27);
-            this.AddOrRemoveStudents.TabIndex = 16;
+            this.AddOrRemoveStudentsTextBox.Location = new System.Drawing.Point(663, 267);
+            this.AddOrRemoveStudentsTextBox.Name = "AddOrRemoveStudentsTextBox";
+            this.AddOrRemoveStudentsTextBox.Size = new System.Drawing.Size(125, 27);
+            this.AddOrRemoveStudentsTextBox.TabIndex = 16;
             // 
             // RevenuePeriodComboBox
             // 
@@ -211,6 +214,7 @@
             this.CloneCampusBtn.TabIndex = 18;
             this.CloneCampusBtn.Text = "Clone Selected Campus";
             this.CloneCampusBtn.UseVisualStyleBackColor = true;
+            this.CloneCampusBtn.Click += new System.EventHandler(this.CloneCampusBtn_Click);
             // 
             // SelectedCampusLabel
             // 
@@ -229,6 +233,7 @@
             this.AddRoomsBtn.TabIndex = 20;
             this.AddRoomsBtn.Text = "Add Room(s)";
             this.AddRoomsBtn.UseVisualStyleBackColor = true;
+            this.AddRoomsBtn.Click += new System.EventHandler(this.AddRoomsBtn_Click);
             // 
             // AddStudentBtn
             // 
@@ -238,6 +243,7 @@
             this.AddStudentBtn.TabIndex = 21;
             this.AddStudentBtn.Text = "Add Student(s)";
             this.AddStudentBtn.UseVisualStyleBackColor = true;
+            this.AddStudentBtn.Click += new System.EventHandler(this.AddStudentBtn_Click);
             // 
             // RemoveStudentsBtn
             // 
@@ -247,6 +253,7 @@
             this.RemoveStudentsBtn.TabIndex = 22;
             this.RemoveStudentsBtn.Text = "Remove Student(s)";
             this.RemoveStudentsBtn.UseVisualStyleBackColor = true;
+            this.RemoveStudentsBtn.Click += new System.EventHandler(this.RemoveStudentsBtn_Click);
             // 
             // CalculateRevenueBtn
             // 
@@ -256,12 +263,35 @@
             this.CalculateRevenueBtn.TabIndex = 23;
             this.CalculateRevenueBtn.Text = "Calculate Revenue";
             this.CalculateRevenueBtn.UseVisualStyleBackColor = true;
+            this.CalculateRevenueBtn.Click += new System.EventHandler(this.CalculateRevenueBtn_Click);
+            // 
+            // ShowInfoBtn
+            // 
+            this.ShowInfoBtn.Location = new System.Drawing.Point(621, 116);
+            this.ShowInfoBtn.Name = "ShowInfoBtn";
+            this.ShowInfoBtn.Size = new System.Drawing.Size(124, 30);
+            this.ShowInfoBtn.TabIndex = 24;
+            this.ShowInfoBtn.Text = "Show Full Info";
+            this.ShowInfoBtn.UseVisualStyleBackColor = true;
+            this.ShowInfoBtn.Click += new System.EventHandler(this.ShowInfoBtn_Click);
+            // 
+            // AddDiningRoomBtn
+            // 
+            this.AddDiningRoomBtn.Location = new System.Drawing.Point(24, 298);
+            this.AddDiningRoomBtn.Name = "AddDiningRoomBtn";
+            this.AddDiningRoomBtn.Size = new System.Drawing.Size(153, 29);
+            this.AddDiningRoomBtn.TabIndex = 25;
+            this.AddDiningRoomBtn.Text = "Add dining room";
+            this.AddDiningRoomBtn.UseVisualStyleBackColor = true;
+            this.AddDiningRoomBtn.Click += new System.EventHandler(this.AddDinningRoomBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.AddDiningRoomBtn);
+            this.Controls.Add(this.ShowInfoBtn);
             this.Controls.Add(this.CalculateRevenueBtn);
             this.Controls.Add(this.RemoveStudentsBtn);
             this.Controls.Add(this.AddStudentBtn);
@@ -269,7 +299,7 @@
             this.Controls.Add(this.SelectedCampusLabel);
             this.Controls.Add(this.CloneCampusBtn);
             this.Controls.Add(this.RevenuePeriodComboBox);
-            this.Controls.Add(this.AddOrRemoveStudents);
+            this.Controls.Add(this.AddOrRemoveStudentsTextBox);
             this.Controls.Add(this.AddRoomsTextBox);
             this.Controls.Add(this.SavedCampusesComboBox);
             this.Controls.Add(this.SavedCampusesLabel);
@@ -311,7 +341,7 @@
         private Label SavedCampusesLabel;
         private ComboBox SavedCampusesComboBox;
         private TextBox AddRoomsTextBox;
-        private TextBox AddOrRemoveStudents;
+        private TextBox AddOrRemoveStudentsTextBox;
         private ComboBox RevenuePeriodComboBox;
         private Button CloneCampusBtn;
         private Label SelectedCampusLabel;
@@ -319,5 +349,7 @@
         private Button AddStudentBtn;
         private Button RemoveStudentsBtn;
         private Button CalculateRevenueBtn;
+        private Button ShowInfoBtn;
+        private Button AddDiningRoomBtn;
     }
 }
