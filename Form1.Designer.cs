@@ -54,6 +54,7 @@
             this.CalculateRevenueBtn = new System.Windows.Forms.Button();
             this.ShowInfoBtn = new System.Windows.Forms.Button();
             this.AddDiningRoomBtn = new System.Windows.Forms.Button();
+            this.RemoveCampusBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // AddCampusBtn
@@ -277,7 +278,7 @@
             // 
             // AddDiningRoomBtn
             // 
-            this.AddDiningRoomBtn.Location = new System.Drawing.Point(24, 298);
+            this.AddDiningRoomBtn.Location = new System.Drawing.Point(12, 297);
             this.AddDiningRoomBtn.Name = "AddDiningRoomBtn";
             this.AddDiningRoomBtn.Size = new System.Drawing.Size(153, 29);
             this.AddDiningRoomBtn.TabIndex = 25;
@@ -285,11 +286,22 @@
             this.AddDiningRoomBtn.UseVisualStyleBackColor = true;
             this.AddDiningRoomBtn.Click += new System.EventHandler(this.AddDinningRoomBtn_Click);
             // 
+            // RemoveCampusBtn
+            // 
+            this.RemoveCampusBtn.Location = new System.Drawing.Point(549, 153);
+            this.RemoveCampusBtn.Name = "RemoveCampusBtn";
+            this.RemoveCampusBtn.Size = new System.Drawing.Size(196, 29);
+            this.RemoveCampusBtn.TabIndex = 26;
+            this.RemoveCampusBtn.Text = "Remove Selected Campus";
+            this.RemoveCampusBtn.UseVisualStyleBackColor = true;
+            this.RemoveCampusBtn.Click += new System.EventHandler(this.RemoveCampusBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.RemoveCampusBtn);
             this.Controls.Add(this.AddDiningRoomBtn);
             this.Controls.Add(this.ShowInfoBtn);
             this.Controls.Add(this.CalculateRevenueBtn);
@@ -351,5 +363,6 @@
         private Button CalculateRevenueBtn;
         private Button ShowInfoBtn;
         private Button AddDiningRoomBtn;
+        private Button RemoveCampusBtn;
     }
 }

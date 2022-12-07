@@ -146,5 +146,18 @@ namespace Campus
             campus.AddDiningroom();
             MessageBox.Show("Success!");
         }
+
+        private void RemoveCampusBtn_Click(object sender, EventArgs e)
+        {
+            bool gotCampus = TryGetCampusFromCheckBox(out Campus campus);
+            if (!gotCampus)
+            {
+                return;
+            }
+            campuses.Remove(campus);
+            UpdateComboBox();
+            MessageBox.Show("Success!");
+
+        }
     }
 }
