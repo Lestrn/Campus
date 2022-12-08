@@ -95,6 +95,7 @@ namespace Campus
             if (rooms)
             {
                 campus.AddRooms(amountToAddOrRemove);
+                MessageBox.Show("Success!");
                 return;
             }
             try
