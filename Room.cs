@@ -13,14 +13,14 @@ namespace Campus
         private RoomType _type;
         private decimal _pricePerPeron;
         private int _currentAmountLiving;
-        private List<IndecatorBook> _keys;
+        private List<IndicatorBook> _keys;
 
-        public Room(int number, RoomType type, decimal pricePerPeron, int currentAmountLiving, params IndecatorBook[] keys)
+        public Room(int number, RoomType type, decimal price, int currentAmountLiving, params IndicatorBook[] keys)
         {
-            _keys = new List<IndecatorBook>();
+            _keys = new List<IndicatorBook>();
             _number = number;
             _type = type;
-            _pricePerPeron = pricePerPeron / (int)type;
+            _pricePerPeron = price / (int)type;
             _currentAmountLiving = currentAmountLiving;
             for (int i = 0; i < keys.Length; i++)
             {
@@ -33,6 +33,10 @@ namespace Campus
         public RoomType Type { get => _type; }
         public decimal PricePerPeron { get => _pricePerPeron; set => _pricePerPeron = value; }
         public int CurrentAmountLiving { get => _currentAmountLiving; set => _currentAmountLiving = value; }
-        public List<IndecatorBook> Keys { get => _keys; set => _keys = value; }
+        public List<IndicatorBook> Keys { get => _keys; set => _keys = value; }
+        public override string ToString()
+        {
+            return $"Number :{Number}, Room type {_type}, Price per person {_pricePerPeron}, Current amount living {_currentAmountLiving}";
+        }
     }
 }

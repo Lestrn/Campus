@@ -9,9 +9,10 @@ namespace Campus
         private string _faculty;
         private Gender _gender;
         private string _group;
-        private IndecatorBook key;
+        private IndicatorBook key;
+        private Curse _curse;
 
-        public Student(string name, string surname, string patronymic, string faculty, Gender gender, string group, IndecatorBook key)
+        public Student(string name, string surname, string patronymic, string faculty, Gender gender, string group, IndicatorBook key, Curse curse)
         {
             _name = name;
             _surname = surname;
@@ -20,6 +21,7 @@ namespace Campus
             _gender = gender;
             _group = group;
             this.key = key;
+            _curse = curse;
         }
 
         public string Name { get => _name; set => _name = value; }
@@ -28,6 +30,12 @@ namespace Campus
         public string Faculty { get => _faculty; set => _faculty = value; }
         public Gender Gender { get => _gender; set => _gender = value; }
         public string Group { get => _group; set => _group = value; }
-        public IndecatorBook Key { get => key; }
+        public IndicatorBook Key { get => key; }
+        public Curse Curse { get => _curse; set => _curse = value; }
+
+        public override string ToString()
+        {
+            return $"Name {Name}, Surname {Surname}, Patronymic {Patronymic}, Faulty {Faculty}\nGender {Gender}, Group {Group}, Key {Key} Curse {_curse}";
+        }
     }
 }

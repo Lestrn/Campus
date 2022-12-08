@@ -32,5 +32,9 @@ namespace Campus
         public Position Position { get => _position; set => _position = value; }
         public decimal Salary { get => _salary; set => _salary = value; }
         public IndicatorNumber IndicatorNumber { get => _indicatorNumber;}
+        public override string ToString()
+        {
+            return $"Name {_name}, Surname {_surname}, Position {_position}, Salary {_salary}, Indicator Number {_indicatorNumber}";
+        }
     }
 }

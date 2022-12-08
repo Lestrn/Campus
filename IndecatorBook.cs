@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Campus
 {
-    public class IndecatorBook
+    public class IndicatorBook
     {
         private string _key;
-        public IndecatorBook(string key)
+        public IndicatorBook(string key)
         {
-           if(_key.Length != 8)
+           if(key.Length != 8)
             {
                 throw new ArgumentException("Key must be 8 charecters long!");
             }
@@ -21,6 +21,15 @@ namespace Campus
         public override string ToString()
         {
             return _key;
+        }
+        public override bool Equals(object? obj)
+        {
+           IndicatorBook indicatorBook = obj as IndicatorBook;
+            return indicatorBook.ToString() == this.ToString();
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

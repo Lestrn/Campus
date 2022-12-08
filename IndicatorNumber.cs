@@ -11,7 +11,7 @@ namespace Campus
         private string _key;
         public IndicatorNumber(string key)
         {
-            if (_key.Length != 10)
+            if (key.Length != 10)
             {
                 throw new ArgumentException("Key must be 10 numbers long!");
             }
@@ -26,6 +26,15 @@ namespace Campus
         public override string ToString()
         {
             return _key;
+        }
+        public override bool Equals(object? obj)
+        {
+            IndicatorNumber indicatorNumber = obj as IndicatorNumber;
+            return indicatorNumber.ToString() == this.ToString();
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

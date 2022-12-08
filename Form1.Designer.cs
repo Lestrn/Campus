@@ -28,140 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddCampusBtn = new System.Windows.Forms.Button();
-            this.UniversityNameTextBox = new System.Windows.Forms.TextBox();
-            this.RevenuePerMonthTextBox = new System.Windows.Forms.TextBox();
-            this.AmountOfStudentsTextBox = new System.Windows.Forms.TextBox();
-            this.AmountOfPersonalTextBox = new System.Windows.Forms.TextBox();
-            this.AmountOfRoomsTextBox = new System.Windows.Forms.TextBox();
-            this.AdressTextBox = new System.Windows.Forms.TextBox();
-            this.UniversityNameLabel = new System.Windows.Forms.Label();
-            this.AdressLabel = new System.Windows.Forms.Label();
-            this.AmountOfRoomsLabel = new System.Windows.Forms.Label();
-            this.AmountOfPersonalLabel = new System.Windows.Forms.Label();
-            this.AmountOfStudentsLabel = new System.Windows.Forms.Label();
-            this.RevenuePerMonthLabel = new System.Windows.Forms.Label();
+            this.GenerateCampusBtn = new System.Windows.Forms.Button();
             this.SavedCampusesLabel = new System.Windows.Forms.Label();
             this.SavedCampusesComboBox = new System.Windows.Forms.ComboBox();
-            this.AddRoomsTextBox = new System.Windows.Forms.TextBox();
-            this.AddOrRemoveStudentsTextBox = new System.Windows.Forms.TextBox();
+            this.RoomNumberTextBox = new System.Windows.Forms.TextBox();
             this.RevenuePeriodComboBox = new System.Windows.Forms.ComboBox();
             this.CloneCampusBtn = new System.Windows.Forms.Button();
             this.SelectedCampusLabel = new System.Windows.Forms.Label();
-            this.AddRoomsBtn = new System.Windows.Forms.Button();
             this.AddStudentBtn = new System.Windows.Forms.Button();
             this.RemoveStudentsBtn = new System.Windows.Forms.Button();
             this.CalculateRevenueBtn = new System.Windows.Forms.Button();
             this.ShowInfoBtn = new System.Windows.Forms.Button();
-            this.AddDiningRoomBtn = new System.Windows.Forms.Button();
             this.RemoveCampusBtn = new System.Windows.Forms.Button();
+            this.KeyStudentTextBox = new System.Windows.Forms.TextBox();
+            this.KeyStudentLabel = new System.Windows.Forms.Label();
+            this.RoomNumberLabel = new System.Windows.Forms.Label();
+            this.SwitchRoomBtn = new System.Windows.Forms.Button();
+            this.NumberRoomToWhichTextBox = new System.Windows.Forms.TextBox();
+            this.switchLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // AddCampusBtn
+            // GenerateCampusBtn
             // 
-            this.AddCampusBtn.Location = new System.Drawing.Point(12, 221);
-            this.AddCampusBtn.Name = "AddCampusBtn";
-            this.AddCampusBtn.Size = new System.Drawing.Size(111, 29);
-            this.AddCampusBtn.TabIndex = 0;
-            this.AddCampusBtn.Text = "Add Campus";
-            this.AddCampusBtn.UseVisualStyleBackColor = true;
-            this.AddCampusBtn.Click += new System.EventHandler(this.AddCampusBtn_Click);
-            // 
-            // UniversityNameTextBox
-            // 
-            this.UniversityNameTextBox.Location = new System.Drawing.Point(12, 14);
-            this.UniversityNameTextBox.Name = "UniversityNameTextBox";
-            this.UniversityNameTextBox.Size = new System.Drawing.Size(125, 27);
-            this.UniversityNameTextBox.TabIndex = 1;
-            // 
-            // RevenuePerMonthTextBox
-            // 
-            this.RevenuePerMonthTextBox.Location = new System.Drawing.Point(12, 179);
-            this.RevenuePerMonthTextBox.Name = "RevenuePerMonthTextBox";
-            this.RevenuePerMonthTextBox.Size = new System.Drawing.Size(125, 27);
-            this.RevenuePerMonthTextBox.TabIndex = 2;
-            // 
-            // AmountOfStudentsTextBox
-            // 
-            this.AmountOfStudentsTextBox.Location = new System.Drawing.Point(12, 146);
-            this.AmountOfStudentsTextBox.Name = "AmountOfStudentsTextBox";
-            this.AmountOfStudentsTextBox.Size = new System.Drawing.Size(125, 27);
-            this.AmountOfStudentsTextBox.TabIndex = 3;
-            // 
-            // AmountOfPersonalTextBox
-            // 
-            this.AmountOfPersonalTextBox.Location = new System.Drawing.Point(12, 113);
-            this.AmountOfPersonalTextBox.Name = "AmountOfPersonalTextBox";
-            this.AmountOfPersonalTextBox.Size = new System.Drawing.Size(125, 27);
-            this.AmountOfPersonalTextBox.TabIndex = 4;
-            // 
-            // AmountOfRoomsTextBox
-            // 
-            this.AmountOfRoomsTextBox.Location = new System.Drawing.Point(12, 80);
-            this.AmountOfRoomsTextBox.Name = "AmountOfRoomsTextBox";
-            this.AmountOfRoomsTextBox.Size = new System.Drawing.Size(125, 27);
-            this.AmountOfRoomsTextBox.TabIndex = 5;
-            // 
-            // AdressTextBox
-            // 
-            this.AdressTextBox.Location = new System.Drawing.Point(12, 47);
-            this.AdressTextBox.Name = "AdressTextBox";
-            this.AdressTextBox.Size = new System.Drawing.Size(125, 27);
-            this.AdressTextBox.TabIndex = 6;
-            // 
-            // UniversityNameLabel
-            // 
-            this.UniversityNameLabel.AutoSize = true;
-            this.UniversityNameLabel.Location = new System.Drawing.Point(158, 14);
-            this.UniversityNameLabel.Name = "UniversityNameLabel";
-            this.UniversityNameLabel.Size = new System.Drawing.Size(117, 20);
-            this.UniversityNameLabel.TabIndex = 7;
-            this.UniversityNameLabel.Text = "University Name";
-            // 
-            // AdressLabel
-            // 
-            this.AdressLabel.AutoSize = true;
-            this.AdressLabel.Location = new System.Drawing.Point(158, 50);
-            this.AdressLabel.Name = "AdressLabel";
-            this.AdressLabel.Size = new System.Drawing.Size(53, 20);
-            this.AdressLabel.TabIndex = 8;
-            this.AdressLabel.Text = "Adress";
-            // 
-            // AmountOfRoomsLabel
-            // 
-            this.AmountOfRoomsLabel.AutoSize = true;
-            this.AmountOfRoomsLabel.Location = new System.Drawing.Point(158, 80);
-            this.AmountOfRoomsLabel.Name = "AmountOfRoomsLabel";
-            this.AmountOfRoomsLabel.Size = new System.Drawing.Size(132, 20);
-            this.AmountOfRoomsLabel.TabIndex = 9;
-            this.AmountOfRoomsLabel.Text = "Amount Of Rooms";
-            // 
-            // AmountOfPersonalLabel
-            // 
-            this.AmountOfPersonalLabel.AutoSize = true;
-            this.AmountOfPersonalLabel.Location = new System.Drawing.Point(158, 116);
-            this.AmountOfPersonalLabel.Name = "AmountOfPersonalLabel";
-            this.AmountOfPersonalLabel.Size = new System.Drawing.Size(141, 20);
-            this.AmountOfPersonalLabel.TabIndex = 10;
-            this.AmountOfPersonalLabel.Text = "Amount Of Personal";
-            // 
-            // AmountOfStudentsLabel
-            // 
-            this.AmountOfStudentsLabel.AutoSize = true;
-            this.AmountOfStudentsLabel.Location = new System.Drawing.Point(158, 153);
-            this.AmountOfStudentsLabel.Name = "AmountOfStudentsLabel";
-            this.AmountOfStudentsLabel.Size = new System.Drawing.Size(143, 20);
-            this.AmountOfStudentsLabel.TabIndex = 11;
-            this.AmountOfStudentsLabel.Text = "Amount Of Students";
-            // 
-            // RevenuePerMonthLabel
-            // 
-            this.RevenuePerMonthLabel.AutoSize = true;
-            this.RevenuePerMonthLabel.Location = new System.Drawing.Point(158, 186);
-            this.RevenuePerMonthLabel.Name = "RevenuePerMonthLabel";
-            this.RevenuePerMonthLabel.Size = new System.Drawing.Size(136, 20);
-            this.RevenuePerMonthLabel.TabIndex = 12;
-            this.RevenuePerMonthLabel.Text = "Revenue Per Month";
+            this.GenerateCampusBtn.Location = new System.Drawing.Point(12, 29);
+            this.GenerateCampusBtn.Name = "GenerateCampusBtn";
+            this.GenerateCampusBtn.Size = new System.Drawing.Size(220, 29);
+            this.GenerateCampusBtn.TabIndex = 0;
+            this.GenerateCampusBtn.Text = "Generate Campus";
+            this.GenerateCampusBtn.UseVisualStyleBackColor = true;
+            this.GenerateCampusBtn.Click += new System.EventHandler(this.GenerateCampusBtn_Click);
             // 
             // SavedCampusesLabel
             // 
@@ -180,19 +75,12 @@
             this.SavedCampusesComboBox.Size = new System.Drawing.Size(151, 28);
             this.SavedCampusesComboBox.TabIndex = 14;
             // 
-            // AddRoomsTextBox
+            // RoomNumberTextBox
             // 
-            this.AddRoomsTextBox.Location = new System.Drawing.Point(663, 221);
-            this.AddRoomsTextBox.Name = "AddRoomsTextBox";
-            this.AddRoomsTextBox.Size = new System.Drawing.Size(125, 27);
-            this.AddRoomsTextBox.TabIndex = 15;
-            // 
-            // AddOrRemoveStudentsTextBox
-            // 
-            this.AddOrRemoveStudentsTextBox.Location = new System.Drawing.Point(663, 267);
-            this.AddOrRemoveStudentsTextBox.Name = "AddOrRemoveStudentsTextBox";
-            this.AddOrRemoveStudentsTextBox.Size = new System.Drawing.Size(125, 27);
-            this.AddOrRemoveStudentsTextBox.TabIndex = 16;
+            this.RoomNumberTextBox.Location = new System.Drawing.Point(211, 312);
+            this.RoomNumberTextBox.Name = "RoomNumberTextBox";
+            this.RoomNumberTextBox.Size = new System.Drawing.Size(125, 27);
+            this.RoomNumberTextBox.TabIndex = 16;
             // 
             // RevenuePeriodComboBox
             // 
@@ -226,21 +114,11 @@
             this.SelectedCampusLabel.TabIndex = 19;
             this.SelectedCampusLabel.Text = "Selected Campus";
             // 
-            // AddRoomsBtn
-            // 
-            this.AddRoomsBtn.Location = new System.Drawing.Point(519, 219);
-            this.AddRoomsBtn.Name = "AddRoomsBtn";
-            this.AddRoomsBtn.Size = new System.Drawing.Size(111, 29);
-            this.AddRoomsBtn.TabIndex = 20;
-            this.AddRoomsBtn.Text = "Add Room(s)";
-            this.AddRoomsBtn.UseVisualStyleBackColor = true;
-            this.AddRoomsBtn.Click += new System.EventHandler(this.AddRoomsBtn_Click);
-            // 
             // AddStudentBtn
             // 
-            this.AddStudentBtn.Location = new System.Drawing.Point(485, 265);
+            this.AddStudentBtn.Location = new System.Drawing.Point(12, 310);
             this.AddStudentBtn.Name = "AddStudentBtn";
-            this.AddStudentBtn.Size = new System.Drawing.Size(160, 29);
+            this.AddStudentBtn.Size = new System.Drawing.Size(170, 29);
             this.AddStudentBtn.TabIndex = 21;
             this.AddStudentBtn.Text = "Add Student(s)";
             this.AddStudentBtn.UseVisualStyleBackColor = true;
@@ -248,7 +126,7 @@
             // 
             // RemoveStudentsBtn
             // 
-            this.RemoveStudentsBtn.Location = new System.Drawing.Point(293, 265);
+            this.RemoveStudentsBtn.Location = new System.Drawing.Point(12, 265);
             this.RemoveStudentsBtn.Name = "RemoveStudentsBtn";
             this.RemoveStudentsBtn.Size = new System.Drawing.Size(170, 29);
             this.RemoveStudentsBtn.TabIndex = 22;
@@ -258,7 +136,7 @@
             // 
             // CalculateRevenueBtn
             // 
-            this.CalculateRevenueBtn.Location = new System.Drawing.Point(458, 330);
+            this.CalculateRevenueBtn.Location = new System.Drawing.Point(618, 376);
             this.CalculateRevenueBtn.Name = "CalculateRevenueBtn";
             this.CalculateRevenueBtn.Size = new System.Drawing.Size(170, 29);
             this.CalculateRevenueBtn.TabIndex = 23;
@@ -276,16 +154,6 @@
             this.ShowInfoBtn.UseVisualStyleBackColor = true;
             this.ShowInfoBtn.Click += new System.EventHandler(this.ShowInfoBtn_Click);
             // 
-            // AddDiningRoomBtn
-            // 
-            this.AddDiningRoomBtn.Location = new System.Drawing.Point(12, 297);
-            this.AddDiningRoomBtn.Name = "AddDiningRoomBtn";
-            this.AddDiningRoomBtn.Size = new System.Drawing.Size(153, 29);
-            this.AddDiningRoomBtn.TabIndex = 25;
-            this.AddDiningRoomBtn.Text = "Add dining room";
-            this.AddDiningRoomBtn.UseVisualStyleBackColor = true;
-            this.AddDiningRoomBtn.Click += new System.EventHandler(this.AddDinningRoomBtn_Click);
-            // 
             // RemoveCampusBtn
             // 
             this.RemoveCampusBtn.Location = new System.Drawing.Point(549, 153);
@@ -296,38 +164,80 @@
             this.RemoveCampusBtn.UseVisualStyleBackColor = true;
             this.RemoveCampusBtn.Click += new System.EventHandler(this.RemoveCampusBtn_Click);
             // 
+            // KeyStudentTextBox
+            // 
+            this.KeyStudentTextBox.Location = new System.Drawing.Point(211, 265);
+            this.KeyStudentTextBox.Name = "KeyStudentTextBox";
+            this.KeyStudentTextBox.Size = new System.Drawing.Size(125, 27);
+            this.KeyStudentTextBox.TabIndex = 27;
+            // 
+            // KeyStudentLabel
+            // 
+            this.KeyStudentLabel.AutoSize = true;
+            this.KeyStudentLabel.Location = new System.Drawing.Point(342, 274);
+            this.KeyStudentLabel.Name = "KeyStudentLabel";
+            this.KeyStudentLabel.Size = new System.Drawing.Size(140, 20);
+            this.KeyStudentLabel.TabIndex = 28;
+            this.KeyStudentLabel.Text = "Students Book (key)";
+            // 
+            // RoomNumberLabel
+            // 
+            this.RoomNumberLabel.AutoSize = true;
+            this.RoomNumberLabel.Location = new System.Drawing.Point(342, 310);
+            this.RoomNumberLabel.Name = "RoomNumberLabel";
+            this.RoomNumberLabel.Size = new System.Drawing.Size(125, 20);
+            this.RoomNumberLabel.TabIndex = 29;
+            this.RoomNumberLabel.Text = "Number of Room";
+            // 
+            // SwitchRoomBtn
+            // 
+            this.SwitchRoomBtn.Location = new System.Drawing.Point(12, 220);
+            this.SwitchRoomBtn.Name = "SwitchRoomBtn";
+            this.SwitchRoomBtn.Size = new System.Drawing.Size(197, 29);
+            this.SwitchRoomBtn.TabIndex = 30;
+            this.SwitchRoomBtn.Text = "Switch Room for student";
+            this.SwitchRoomBtn.UseVisualStyleBackColor = true;
+            this.SwitchRoomBtn.Click += new System.EventHandler(this.SwitchRoomBtn_Click);
+            // 
+            // NumberRoomToWhichTextBox
+            // 
+            this.NumberRoomToWhichTextBox.Location = new System.Drawing.Point(227, 217);
+            this.NumberRoomToWhichTextBox.Name = "NumberRoomToWhichTextBox";
+            this.NumberRoomToWhichTextBox.Size = new System.Drawing.Size(125, 27);
+            this.NumberRoomToWhichTextBox.TabIndex = 31;
+            // 
+            // switchLabel
+            // 
+            this.switchLabel.AutoSize = true;
+            this.switchLabel.Location = new System.Drawing.Point(369, 220);
+            this.switchLabel.Name = "switchLabel";
+            this.switchLabel.Size = new System.Drawing.Size(236, 20);
+            this.switchLabel.TabIndex = 32;
+            this.switchLabel.Text = "Number of room to wich to switch";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.switchLabel);
+            this.Controls.Add(this.NumberRoomToWhichTextBox);
+            this.Controls.Add(this.SwitchRoomBtn);
+            this.Controls.Add(this.RoomNumberLabel);
+            this.Controls.Add(this.KeyStudentLabel);
+            this.Controls.Add(this.KeyStudentTextBox);
             this.Controls.Add(this.RemoveCampusBtn);
-            this.Controls.Add(this.AddDiningRoomBtn);
             this.Controls.Add(this.ShowInfoBtn);
             this.Controls.Add(this.CalculateRevenueBtn);
             this.Controls.Add(this.RemoveStudentsBtn);
             this.Controls.Add(this.AddStudentBtn);
-            this.Controls.Add(this.AddRoomsBtn);
             this.Controls.Add(this.SelectedCampusLabel);
             this.Controls.Add(this.CloneCampusBtn);
             this.Controls.Add(this.RevenuePeriodComboBox);
-            this.Controls.Add(this.AddOrRemoveStudentsTextBox);
-            this.Controls.Add(this.AddRoomsTextBox);
+            this.Controls.Add(this.RoomNumberTextBox);
             this.Controls.Add(this.SavedCampusesComboBox);
             this.Controls.Add(this.SavedCampusesLabel);
-            this.Controls.Add(this.RevenuePerMonthLabel);
-            this.Controls.Add(this.AmountOfStudentsLabel);
-            this.Controls.Add(this.AmountOfPersonalLabel);
-            this.Controls.Add(this.AmountOfRoomsLabel);
-            this.Controls.Add(this.AdressLabel);
-            this.Controls.Add(this.UniversityNameLabel);
-            this.Controls.Add(this.AdressTextBox);
-            this.Controls.Add(this.AmountOfRoomsTextBox);
-            this.Controls.Add(this.AmountOfPersonalTextBox);
-            this.Controls.Add(this.AmountOfStudentsTextBox);
-            this.Controls.Add(this.RevenuePerMonthTextBox);
-            this.Controls.Add(this.UniversityNameTextBox);
-            this.Controls.Add(this.AddCampusBtn);
+            this.Controls.Add(this.GenerateCampusBtn);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -337,32 +247,23 @@
 
         #endregion
 
-        private Button AddCampusBtn;
-        private TextBox UniversityNameTextBox;
-        private TextBox RevenuePerMonthTextBox;
-        private TextBox AmountOfStudentsTextBox;
-        private TextBox AmountOfPersonalTextBox;
-        private TextBox AmountOfRoomsTextBox;
-        private TextBox AdressTextBox;
-        private Label UniversityNameLabel;
-        private Label AdressLabel;
-        private Label AmountOfRoomsLabel;
-        private Label AmountOfPersonalLabel;
-        private Label AmountOfStudentsLabel;
-        private Label RevenuePerMonthLabel;
+        private Button GenerateCampusBtn;
         private Label SavedCampusesLabel;
         private ComboBox SavedCampusesComboBox;
-        private TextBox AddRoomsTextBox;
-        private TextBox AddOrRemoveStudentsTextBox;
+        private TextBox RoomNumberTextBox;
         private ComboBox RevenuePeriodComboBox;
         private Button CloneCampusBtn;
         private Label SelectedCampusLabel;
-        private Button AddRoomsBtn;
         private Button AddStudentBtn;
         private Button RemoveStudentsBtn;
         private Button CalculateRevenueBtn;
         private Button ShowInfoBtn;
-        private Button AddDiningRoomBtn;
         private Button RemoveCampusBtn;
+        private TextBox KeyStudentTextBox;
+        private Label KeyStudentLabel;
+        private Label RoomNumberLabel;
+        private Button SwitchRoomBtn;
+        private TextBox NumberRoomToWhichTextBox;
+        private Label switchLabel;
     }
 }

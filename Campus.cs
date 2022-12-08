@@ -9,15 +9,17 @@ namespace Campus
 {
     public class Campus : ICloneable
     {
+        private string _name;
         private string _universityName;
         private string _adress;
         private List<Room> _rooms = new List<Room>(10);      
         private List<Worker> _workers = new List<Worker>(10);    
-        private Dictionary<IndecatorBook, Student> _students;
+        private Dictionary<string, Student> _students = new Dictionary<string, Student>(5);
         private decimal _revenuePerMonth;
         private Dictionary<int, List<Student>> roomStudents = new Dictionary<int, List<Student>>(10);
-        private Campus(string universityName, string adress, List<Room> rooms, List<Worker> workers, Dictionary<IndecatorBook, Student> students, decimal revenuePerMonth, Dictionary<int, List<Student>> roomStudents) // Constructor to clone
+        private Campus(string name, string universityName, string adress, List<Room> rooms, List<Worker> workers, Dictionary<string, Student> students, decimal revenuePerMonth, Dictionary<int, List<Student>> roomStudents) // Constructor to clone
         {
+            _name = name;
             _universityName = universityName;
             _adress = adress;
             _rooms = rooms;
@@ -25,7 +27,7 @@ namespace Campus
             _students = students;
             _revenuePerMonth = revenuePerMonth;
         }
-        public Campus(string universityName, string adress, decimal revenuePerMonth, Worker[] workers, Room[] rooms)
+        public Campus(string name, string universityName, string adress, decimal revenuePerMonth, Worker[] workers, Room[] rooms)
         {
             CampusValidator(rooms, workers);
             for (int i = 0; i < workers.Length; i++)
@@ -36,10 +38,14 @@ namespace Campus
             {
                 _rooms.Add(rooms[i]);
             }
+            for (int i = 0; i < rooms.Length; i++) // saving all available rooms
+            {
+                roomStudents.Add(rooms[i].Number, new List<Student>());
+            }
             _universityName = universityName;
             _adress = adress;
             _revenuePerMonth = revenuePerMonth;
-
+            _name = name;
         }
 
 
@@ -90,40 +96,53 @@ namespace Campus
             {
                 throw new NullReferenceException("student was null");
             }
-            if (roomStudents.ContainsKey(roomNumber))
+            if (!roomStudents.ContainsKey(roomNumber))
             {
-                List<Student> studentsLivingInCurrentRoom = roomStudents[roomNumber];
-                foreach (var studentRoom in studentsLivingInCurrentRoom)
-                {
-                    if(studentRoom.Gender != student.Gender)
-                    {
-                        throw new ArgumentException("Peope with two different genders cant live in the same room");
-                    }
-                }
-                roomStudents[roomNumber].Add(student);
+                throw new ArgumentException("Room with that number wasnt found");
             }
-            roomStudents.Add(roomNumber, new List<Student>() { student });
-            _students.Add(student.Key, student);
+            List<Student> studentsLivingInCurrentRoom = roomStudents[roomNumber];
+            foreach (var studentRoom in studentsLivingInCurrentRoom)
+            {
+                if (studentRoom.Gender != student.Gender)
+                {
+                    throw new ArgumentException("Peope with two different genders cant live in the same room");
+                }
+            }
+            roomStudents[roomNumber].Add(student);
+            _rooms[roomNumber - 1].CurrentAmountLiving++;
+            _students.Add(student.Key.ToString(), student);
+
         }
-        public void EvictionOfStudent(IndecatorBook indecatorBook, int roomNumber)
+        public void EvictionOfStudent(IndicatorBook indecatorBook, int roomNumber)
         {
-            if (!_students.ContainsKey(indecatorBook))
+            if (!_students.ContainsKey(indecatorBook.ToString()))
             {
                 throw new ArgumentException("Key (book) was invalid");
             }
-            _students.Remove(indecatorBook);
+            if (!roomStudents.ContainsKey(roomNumber))
+            {
+                throw new ArgumentException("Room with that number wasnt found");
+            }
+            _students.Remove(indecatorBook.ToString());
+            bool removed = false;
             foreach (var studentInRoom in roomStudents[roomNumber])
             {
-                if(studentInRoom.Key == indecatorBook)
+                if(studentInRoom.Key.ToString() == indecatorBook.ToString())
                 {
                     roomStudents[roomNumber].Remove(studentInRoom);
+                    _rooms[roomNumber - 1].CurrentAmountLiving--;
+                    removed = true;
                     break;
                 }
             }
+            if (!removed)
+            {
+                throw new ArgumentException($"Student wasnt found in {roomNumber} room");
+            }
         }
-        public void MoveStudent(IndecatorBook indecatorBook, int roomNumberFromWhich, int roomNumberToWhich)
+        public void MoveStudent(IndicatorBook indecatorBook, int roomNumberFromWhich, int roomNumberToWhich)
         {
-            if (roomStudents.ContainsKey(roomNumberFromWhich) || roomStudents.ContainsKey(roomNumberToWhich))
+            if (!roomStudents.ContainsKey(roomNumberFromWhich) || !roomStudents.ContainsKey(roomNumberToWhich))
             {
                 throw new ArgumentException("One of the rooms doesnt exist!");
             }
@@ -131,10 +150,9 @@ namespace Campus
             Student savedStudent = null;
             foreach(var student in roomStudents[roomNumberFromWhich])
             {
-                if(student.Key == indecatorBook)
+                if(student.Key.ToString() == indecatorBook.ToString())
                 {
-                    savedStudent = student;
-                  
+                    savedStudent = student;                  
                     break;
                 }
             }
@@ -151,23 +169,58 @@ namespace Campus
                 break;
             }
             roomStudents[roomNumberFromWhich].Remove(savedStudent);
+            _rooms[roomNumberFromWhich - 1].CurrentAmountLiving--;
             roomStudents[roomNumberToWhich].Add(savedStudent);
-            
+            _rooms[roomNumberToWhich - 1].CurrentAmountLiving++;
+
         }
         public override string ToString()
-        {
-            string result = $"University Name: {_universityName}\nAdress: {_adress}\n" +
-                $"Amount of rooms: {_rooms.Count}\nAmount of students: {_students.Count}\n" +
-                $"Amount of personal: {_workers.Count}\nRevenue: {_revenuePerMonth}";
-            return result;
+        {            
+            return _name;
         }
         public object Clone()
         {
-            return new Campus(_universityName, _adress, _rooms, _workers, _students, _revenuePerMonth, roomStudents);
+            return new Campus(_name, _universityName, _adress, _rooms, _workers, _students, _revenuePerMonth, roomStudents);
         }
         public decimal CalculateRevenue(PeriodType periodType)
         {
             return _revenuePerMonth * (int)periodType;
+        }
+        public string GetFullInfo()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(this._name);
+            stringBuilder.AppendLine(_universityName);
+            stringBuilder.AppendLine(_adress);
+            stringBuilder.AppendLine(_revenuePerMonth.ToString());
+            stringBuilder.AppendLine("ROOMS");
+            foreach (var room in this._rooms)
+            {
+                stringBuilder.AppendLine(room.ToString());
+            }
+            stringBuilder.AppendLine("WORKERS");
+            foreach (var worker in _workers)
+            {
+                stringBuilder.AppendLine(worker.ToString());
+            }
+            stringBuilder.AppendLine("STUDENTS");
+            if (_students != null)
+            {
+                foreach (var student in _students)
+                {
+                    stringBuilder.AppendLine(student.ToString());
+                }
+            }
+            stringBuilder.AppendLine("Rooms And Students");
+            for (int i = 1; i <= roomStudents.Count; i++)
+            {
+                stringBuilder.AppendLine($"Room {i}\nStudents:");
+                foreach (var item in roomStudents[i])
+                {
+                    stringBuilder.AppendLine($"\n\t{item.ToString()}");
+                }
+            }
+            return stringBuilder.ToString();
         }
     }
 }
