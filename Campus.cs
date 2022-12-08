@@ -25,9 +25,21 @@ namespace Campus
             _students = students;
             _revenuePerMonth = revenuePerMonth;
         }
-        public Campus(Worker[] workers, Room[] rooms)
+        public Campus(string universityName, string adress, decimal revenuePerMonth, Worker[] workers, Room[] rooms)
         {
             CampusValidator(rooms, workers);
+            for (int i = 0; i < workers.Length; i++)
+            {
+                _workers.Add(workers[i]);
+            }
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                _rooms.Add(rooms[i]);
+            }
+            _universityName = universityName;
+            _adress = adress;
+            _revenuePerMonth = revenuePerMonth;
+
         }
 
 
@@ -71,14 +83,6 @@ namespace Campus
             }
 
     
-        }
-        public void AddRooms(uint amountToAdd)
-        {
-            Random random = new Random();
-            for (int i = 0; i < amountToAdd; i++)
-            {
-                _rooms.Add(new Room(random.Next(200, 500)));
-            }         
         }
         public void SettlementOfStudent(Student student, int roomNumber)
         {
@@ -149,13 +153,6 @@ namespace Campus
             roomStudents[roomNumberFromWhich].Remove(savedStudent);
             roomStudents[roomNumberToWhich].Add(savedStudent);
             
-        }
-        public void AddWorkers(int amount)
-        {
-            for (int i = 0; i < amount; i++)
-            {
-                _workers.Add(new Worker("Test", "Lecturer"));
-            } 
         }
         public override string ToString()
         {
