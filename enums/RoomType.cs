@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Campus
+namespace Campus.enums
 {
-    public enum PeriodType
+    public enum RoomType
     {
-        Month = 1,
-        HalfYear = 6,
-        Year = 12
+        Standart = 4,
+        Comfort = 2,
+        Single = 1
     }
 }

@@ -1,3 +1,5 @@
+using Campus.enums;
+
 namespace Campus
 {
     public partial class Form1 : Form
@@ -11,9 +13,9 @@ namespace Campus
         private void AddCampusBtn_Click(object sender, EventArgs e)
         {
             bool isParsed = false;
-            isParsed = uint.TryParse(AmountOfRoomsTextBox.Text, out uint amountOfRooms);
-            isParsed = uint.TryParse(AmountOfPersonalTextBox.Text, out uint amountOfPersonal);
-            isParsed = uint.TryParse(AmountOfStudentsTextBox.Text, out uint amountOfStudents);
+            isParsed = int.TryParse(AmountOfRoomsTextBox.Text, out int amountOfRooms);
+            isParsed = int.TryParse(AmountOfPersonalTextBox.Text, out int amountOfPersonal);
+            isParsed = int.TryParse(AmountOfStudentsTextBox.Text, out int amountOfStudents);
             isParsed = decimal.TryParse(RevenuePerMonthTextBox.Text, out decimal revenuePerMonth);
             if (!isParsed)
             {
