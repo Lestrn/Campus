@@ -46,6 +46,8 @@
             this.SwitchRoomBtn = new System.Windows.Forms.Button();
             this.NumberRoomToWhichTextBox = new System.Windows.Forms.TextBox();
             this.switchLabel = new System.Windows.Forms.Label();
+            this.SaveToTXTBtn = new System.Windows.Forms.Button();
+            this.ReadTXTFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // GenerateCampusBtn
@@ -195,7 +197,7 @@
             this.SwitchRoomBtn.Name = "SwitchRoomBtn";
             this.SwitchRoomBtn.Size = new System.Drawing.Size(197, 29);
             this.SwitchRoomBtn.TabIndex = 30;
-            this.SwitchRoomBtn.Text = "Switch Room for student";
+            this.SwitchRoomBtn.Text = "Move Student";
             this.SwitchRoomBtn.UseVisualStyleBackColor = true;
             this.SwitchRoomBtn.Click += new System.EventHandler(this.SwitchRoomBtn_Click);
             // 
@@ -211,15 +213,37 @@
             this.switchLabel.AutoSize = true;
             this.switchLabel.Location = new System.Drawing.Point(369, 220);
             this.switchLabel.Name = "switchLabel";
-            this.switchLabel.Size = new System.Drawing.Size(236, 20);
+            this.switchLabel.Size = new System.Drawing.Size(150, 20);
             this.switchLabel.TabIndex = 32;
-            this.switchLabel.Text = "Number of room to wich to switch";
+            this.switchLabel.Text = "Room to which move";
+            // 
+            // SaveToTXTBtn
+            // 
+            this.SaveToTXTBtn.Location = new System.Drawing.Point(12, 116);
+            this.SaveToTXTBtn.Name = "SaveToTXTBtn";
+            this.SaveToTXTBtn.Size = new System.Drawing.Size(144, 29);
+            this.SaveToTXTBtn.TabIndex = 33;
+            this.SaveToTXTBtn.Text = "Save Info to TXT";
+            this.SaveToTXTBtn.UseVisualStyleBackColor = true;
+            this.SaveToTXTBtn.Click += new System.EventHandler(this.SaveToTXTBtn_Click);
+            // 
+            // ReadTXTFile
+            // 
+            this.ReadTXTFile.Location = new System.Drawing.Point(208, 116);
+            this.ReadTXTFile.Name = "ReadTXTFile";
+            this.ReadTXTFile.Size = new System.Drawing.Size(144, 29);
+            this.ReadTXTFile.TabIndex = 34;
+            this.ReadTXTFile.Text = "Read TXT File";
+            this.ReadTXTFile.UseVisualStyleBackColor = true;
+            this.ReadTXTFile.Click += new System.EventHandler(this.ReadTXTFile_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ReadTXTFile);
+            this.Controls.Add(this.SaveToTXTBtn);
             this.Controls.Add(this.switchLabel);
             this.Controls.Add(this.NumberRoomToWhichTextBox);
             this.Controls.Add(this.SwitchRoomBtn);
@@ -240,6 +264,7 @@
             this.Controls.Add(this.GenerateCampusBtn);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,5 +290,8 @@
         private Button SwitchRoomBtn;
         private TextBox NumberRoomToWhichTextBox;
         private Label switchLabel;
+        private Button SaveToTXTBtn;
+        private Button OpenDirectoryBtn;
+        private Button ReadTXTFile;
     }
 }

@@ -9,6 +9,7 @@ namespace Campus
 {
     public class Campus : ICloneable
     {
+        private const string DIRECTORYPATH = @"..\..\CampusData";
         private string _name;
         private string _universityName;
         private string _adress;
@@ -221,6 +222,62 @@ namespace Campus
                 }
             }
             return stringBuilder.ToString();
+        }
+        public void SaveInfoDataTXT()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(this._name);
+            stringBuilder.AppendLine(_universityName);
+            stringBuilder.AppendLine(_adress);
+            stringBuilder.AppendLine(_revenuePerMonth.ToString());
+            foreach (var room in this._rooms)
+            {
+                stringBuilder.AppendLine(room.ToString());
+            }
+            stringBuilder.AppendLine("WORKERS");
+            foreach (var worker in _workers)
+            {
+                stringBuilder.AppendLine(worker.ToString());
+            }
+            File.WriteAllText($@"{DIRECTORYPATH}\Data.txt", stringBuilder.ToString());
+        }
+        public void SaveInfoStudentTXT()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("Rooms And Students");
+            for (int i = 1; i <= roomStudents.Count; i++)
+            {
+                stringBuilder.AppendLine($"Room {i}\nStudents:");
+                foreach (var item in roomStudents[i])
+                {
+                    stringBuilder.AppendLine($"\n\t{item.ToString()}");
+                }
+            }
+            File.WriteAllText($@"{DIRECTORYPATH}\Student.txt", stringBuilder.ToString());
+        }
+        public void SaveInfoWorkersTXT()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("WORKERS");
+            foreach (var worker in _workers)
+            {
+                stringBuilder.AppendLine(worker.ToString());
+            }
+            File.WriteAllText($@"{DIRECTORYPATH}\Workers.txt", stringBuilder.ToString());
+        }
+        public string ReadFileFromPath(string path)
+        {
+            string text = "";
+            using (var reader = new StreamReader(path))
+            {
+                string line;
+                while (((line = reader.ReadLine()) != null))
+                {
+                    text += $"{line}\n";
+                }
+                
+            }
+            return text;
         }
     }
 }

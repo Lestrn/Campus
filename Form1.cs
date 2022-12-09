@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 
 namespace Campus
@@ -244,6 +245,63 @@ namespace Campus
 
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            CheckOrCreateDataDirectory();
+        }
+        public static void CheckOrCreateDataDirectory()
+        {
+            bool exists = Directory.Exists(@"..\..\CampusData");
+            if (!exists)
+            {
+                Directory.CreateDirectory(@"..\..\CampusData");
+            }
+        }
 
+        private void SaveToTXTBtn_Click(object sender, EventArgs e)
+        {
+            bool gotCampus = TryGetCampusFromCheckBox(out Campus campus);
+            if (!gotCampus)
+            {
+                return;
+            }
+            campus.SaveInfoDataTXT();
+            campus.SaveInfoWorkersTXT();
+            campus.SaveInfoStudentTXT();
+            MessageBox.Show("Success!");
+        }
+
+        private void ReadTXTFile_Click(object sender, EventArgs e)
+        {
+            bool gotCampus = TryGetCampusFromCheckBox(out Campus campus);
+            if (!gotCampus)
+            {
+                return;
+            }
+            string path = GetPathFromUser();
+            if(path == "")
+            {
+                return;
+            }
+            Form form = new InfoForm(campus.ReadFileFromPath(path));
+            form.Show();
+            
+
+        }
+        public string GetPathFromUser()
+        {
+            string path = "";
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Open TXT file";
+                ofd.Filter = "txt files(*.txt)|*.txt";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    path = ofd.FileName;
+                }
+            }
+            return path;
+        }
     }
 }
