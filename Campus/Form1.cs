@@ -114,7 +114,6 @@ namespace Campus
         public bool TryGetCampusFromCheckBox(out Campus? campus) 
         {
             campus = null;
-            Campus clonedCampus;
             campus = (Campus)SavedCampusesComboBox.SelectedItem;
             if (campus == null)
             {
@@ -130,7 +129,8 @@ namespace Campus
             {
                 return;
             }
-            campuses.Add(campus);
+            Campus clonedCampus = campus.Clone() as Campus;
+            campuses.Add(clonedCampus);
             UpdateComboBox();
             MessageBox.Show("Success!");
         }

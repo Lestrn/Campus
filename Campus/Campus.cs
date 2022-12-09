@@ -17,7 +17,7 @@ namespace Campus
         private List<Worker> _workers = new List<Worker>(10);    
         private Dictionary<string, Student> _students = new Dictionary<string, Student>(5);
         private decimal _revenuePerMonth;
-        private Dictionary<int, List<Student>> roomStudents = new Dictionary<int, List<Student>>(10);
+        private Dictionary<int, List<Student>> _roomStudents = new Dictionary<int, List<Student>>(10);
         private Campus(string name, string universityName, string adress, List<Room> rooms, List<Worker> workers, Dictionary<string, Student> students, decimal revenuePerMonth, Dictionary<int, List<Student>> roomStudents) // Constructor to clone
         {
             _name = name;
@@ -27,6 +27,7 @@ namespace Campus
             _workers = workers;
             _students = students;
             _revenuePerMonth = revenuePerMonth;
+            this._roomStudents = roomStudents;
         }
         public Campus(string name, string universityName, string adress, decimal revenuePerMonth, Worker[] workers, Room[] rooms)
         {
@@ -41,7 +42,7 @@ namespace Campus
             }
             for (int i = 0; i < rooms.Length; i++) // saving all available rooms
             {
-                roomStudents.Add(rooms[i].Number, new List<Student>());
+                _roomStudents.Add(rooms[i].Number, new List<Student>());
             }
             _universityName = universityName;
             _adress = adress;
@@ -93,11 +94,11 @@ namespace Campus
             {
                 throw new NullReferenceException("student was null");
             }
-            if (!roomStudents.ContainsKey(roomNumber))
+            if (!_roomStudents.ContainsKey(roomNumber))
             {
                 throw new ArgumentException("Room with that number wasnt found");
             }
-            List<Student> studentsLivingInCurrentRoom = roomStudents[roomNumber];
+            List<Student> studentsLivingInCurrentRoom = _roomStudents[roomNumber];
             foreach (var studentRoom in studentsLivingInCurrentRoom)
             {
                 if (studentRoom.Gender != student.Gender)
@@ -105,11 +106,11 @@ namespace Campus
                     throw new ArgumentException("Peope with two different genders cant live in the same room");
                 }
             }
-            if (roomStudents[roomNumber].Count == (int)_rooms[roomNumber - 1].Type)
+            if (_roomStudents[roomNumber].Count == (int)_rooms[roomNumber - 1].Type)
             {
                 throw new ArgumentException("Cant add more students to that room with that type");
             }
-            roomStudents[roomNumber].Add(student);
+            _roomStudents[roomNumber].Add(student);
             _rooms[roomNumber - 1].CurrentAmountLiving++;
             _students.Add(student.Key.ToString(), student);
 
@@ -120,17 +121,17 @@ namespace Campus
             {
                 throw new ArgumentException("Key (book) was invalid");
             }
-            if (!roomStudents.ContainsKey(roomNumber))
+            if (!_roomStudents.ContainsKey(roomNumber))
             {
                 throw new ArgumentException("Room with that number wasnt found");
             }
             _students.Remove(indecatorBook.ToString());
             bool removed = false;
-            foreach (var studentInRoom in roomStudents[roomNumber])
+            foreach (var studentInRoom in _roomStudents[roomNumber])
             {
                 if(studentInRoom.Key.ToString() == indecatorBook.ToString())
                 {
-                    roomStudents[roomNumber].Remove(studentInRoom);
+                    _roomStudents[roomNumber].Remove(studentInRoom);
                     _rooms[roomNumber - 1].CurrentAmountLiving--;
                     removed = true;
                     break;
@@ -143,13 +144,13 @@ namespace Campus
         }
         public void MoveStudent(IndicatorBook indecatorBook, int roomNumberFromWhich, int roomNumberToWhich)
         {
-            if (!roomStudents.ContainsKey(roomNumberFromWhich) || !roomStudents.ContainsKey(roomNumberToWhich))
+            if (!_roomStudents.ContainsKey(roomNumberFromWhich) || !_roomStudents.ContainsKey(roomNumberToWhich))
             {
                 throw new ArgumentException("One of the rooms doesnt exist!");
             }
             
             Student savedStudent = null;
-            foreach(var student in roomStudents[roomNumberFromWhich])
+            foreach(var student in _roomStudents[roomNumberFromWhich])
             {
                 if(student.Key.ToString() == indecatorBook.ToString())
                 {
@@ -161,7 +162,7 @@ namespace Campus
             {
                 throw new ArgumentException($"Student with this key wasnt found in {roomNumberFromWhich} room");
             }
-            foreach (var studentsInRoom in roomStudents[roomNumberToWhich])                                         //Proverka na gender
+            foreach (var studentsInRoom in _roomStudents[roomNumberToWhich])                                         //Proverka na gender
             {
                 if(studentsInRoom.Gender != savedStudent.Gender)
                 {
@@ -169,9 +170,9 @@ namespace Campus
                 }
                 break;
             }
-            roomStudents[roomNumberFromWhich].Remove(savedStudent);
+            _roomStudents[roomNumberFromWhich].Remove(savedStudent);
             _rooms[roomNumberFromWhich - 1].CurrentAmountLiving--;
-            roomStudents[roomNumberToWhich].Add(savedStudent);
+            _roomStudents[roomNumberToWhich].Add(savedStudent);
             _rooms[roomNumberToWhich - 1].CurrentAmountLiving++;
 
         }
@@ -179,9 +180,37 @@ namespace Campus
         {            
             return _name;
         }
-        public object Clone()
+        public object Clone() // deep cloning
         {
-            return new Campus(_name, _universityName, _adress, _rooms, _workers, _students, _revenuePerMonth, roomStudents);
+            List<Room> rooms = new List<Room>(10);
+            foreach (var room in _rooms)
+            {
+                Room roomToDeepClone = new Room(room.Number, room.Type, (room.PricePerPeron * (int)room.Type), room.CurrentAmountLiving, room.Keys.ToArray());
+                rooms.Add(roomToDeepClone);
+            }
+            List<Worker> workers = new List<Worker>(10);
+            foreach (var worker in _workers)
+            {
+                Worker workerToDeepClone = new Worker(worker.Name, worker.Surname, worker.Position, worker.Salary, worker.IndicatorNumber);
+                workers.Add(workerToDeepClone);
+            }
+            Dictionary<string, Student> students = new Dictionary<string, Student>(10);
+            foreach (var item in _students)
+            {
+                Student student = new Student(item.Value.Name, item.Value.Surname, item.Value.Patronymic, item.Value.Faculty, item.Value.Gender, item.Value.Group, item.Value.Key, item.Value.Curse);
+                students.Add(item.Key, student);
+            }
+            Dictionary<int, List<Student>> roomStudents = new Dictionary<int, List<Student>>(10);
+            for (int i = 1; i <= _roomStudents.Count; i++)
+            {
+                List<Student> studentsForDeepCloning = new List<Student>();
+                foreach (var item in _roomStudents[i])
+                {
+                    studentsForDeepCloning.Add(new Student(item.Name, item.Surname, item.Patronymic, item.Faculty, item.Gender, item.Group, item.Key, item.Curse));
+                }
+                roomStudents.Add(i, studentsForDeepCloning);
+            }
+            return new Campus(_name, _universityName, _adress, rooms, workers, students, _revenuePerMonth, roomStudents);
         }
         public decimal CalculateRevenue(PeriodType periodType)
         {
@@ -213,10 +242,10 @@ namespace Campus
                 }
             }
             stringBuilder.AppendLine("Rooms And Students");
-            for (int i = 1; i <= roomStudents.Count; i++)
+            for (int i = 1; i <= _roomStudents.Count; i++)
             {
                 stringBuilder.AppendLine($"Room {i}\nStudents:");
-                foreach (var item in roomStudents[i])
+                foreach (var item in _roomStudents[i])
                 {
                     stringBuilder.AppendLine($"\n\t{item.ToString()}");
                 }
@@ -245,10 +274,10 @@ namespace Campus
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("Rooms And Students");
-            for (int i = 1; i <= roomStudents.Count; i++)
+            for (int i = 1; i <= _roomStudents.Count; i++)
             {
                 stringBuilder.AppendLine($"Room {i}\nStudents:");
-                foreach (var item in roomStudents[i])
+                foreach (var item in _roomStudents[i])
                 {
                     stringBuilder.AppendLine($"\n\t{item.ToString()}");
                 }
