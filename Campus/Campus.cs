@@ -47,11 +47,7 @@ namespace Campus
             _adress = adress;
             _revenuePerMonth = revenuePerMonth;
             _name = name;
-        }
-
-
-            
-
+        }         
         public string UniversityName { get => _universityName; set => _universityName = value;  }
         public string UniversityAdress { get => _adress; set => _adress = value; }
         public int AmoontOfRooms { get => _rooms.Count; }
@@ -60,9 +56,9 @@ namespace Campus
         public decimal RevenuePerMonth { get => _revenuePerMonth; set => _revenuePerMonth = value; }
         private void CampusValidator(Room[] rooms, Worker[] workers)
         {
-            bool result = rooms.Length >= 30;
-            result = workers.Length >= 10;
-            if(result == false)
+            bool amountOfRoomsIsValid = rooms.Length >= 30;
+            bool resultWorkersIsValid = workers.Length >= 10;
+            if(!amountOfRoomsIsValid || !resultWorkersIsValid)
             {
                 throw new ArgumentException("Incorrent amount of rooms / workers");
             }
@@ -108,6 +104,10 @@ namespace Campus
                 {
                     throw new ArgumentException("Peope with two different genders cant live in the same room");
                 }
+            }
+            if (roomStudents[roomNumber].Count == (int)_rooms[roomNumber - 1].Type)
+            {
+                throw new ArgumentException("Cant add more students to that room with that type");
             }
             roomStudents[roomNumber].Add(student);
             _rooms[roomNumber - 1].CurrentAmountLiving++;
