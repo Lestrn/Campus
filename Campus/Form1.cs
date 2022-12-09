@@ -215,6 +215,7 @@ namespace Campus
             if (!isParsed)
             {
                 MessageBox.Show("correct type wasnt selected");
+                return;
             }
             PeriodType periodType = (PeriodType)parsedObject;
             MessageBox.Show($"Total revenue: {campus.CalculateRevenue(periodType)}\n{periodType}");
