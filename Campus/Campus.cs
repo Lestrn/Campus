@@ -125,12 +125,12 @@ namespace Campus
             {
                 throw new ArgumentException("Room with that number wasnt found");
             }
-            _students.Remove(indecatorBook.ToString());
             bool removed = false;
             foreach (var studentInRoom in _roomStudents[roomNumber])
             {
                 if(studentInRoom.Key.ToString() == indecatorBook.ToString())
                 {
+                    _students.Remove(indecatorBook.ToString());
                     _roomStudents[roomNumber].Remove(studentInRoom);
                     _rooms[roomNumber - 1].CurrentAmountLiving--;
                     removed = true;
@@ -148,7 +148,10 @@ namespace Campus
             {
                 throw new ArgumentException("One of the rooms doesnt exist!");
             }
-            
+            if (_roomStudents[roomNumberToWhich].Count == (int)_rooms[roomNumberToWhich - 1].Type)
+            {
+                throw new ArgumentException($"Student cant be moved due to that room is full \nType: {_rooms[roomNumberToWhich - 1].Type}\nAmount of students that are right now in {_roomStudents[roomNumberToWhich].Count}");
+            }
             Student savedStudent = null;
             foreach(var student in _roomStudents[roomNumberFromWhich])
             {
