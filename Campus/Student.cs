@@ -9,7 +9,7 @@ namespace Campus
         private string _faculty;
         private Gender _gender;
         private string _group;
-        private IndicatorBook key;
+        private IndicatorBook _key;
         private Curse _curse;
 
         public Student(string name, string surname, string patronymic, string faculty, Gender gender, string group, IndicatorBook key, Curse curse)
@@ -20,7 +20,7 @@ namespace Campus
             _faculty = faculty;
             _gender = gender;
             _group = group;
-            this.key = key;
+            this._key = key;
             _curse = curse;
         }
 
@@ -30,7 +30,7 @@ namespace Campus
         public string Faculty { get => _faculty; set => _faculty = value; }
         public Gender Gender { get => _gender; set => _gender = value; }
         public string Group { get => _group; set => _group = value; }
-        public IndicatorBook Key { get => key; }
+        public IndicatorBook Key { get => _key; }
         public Curse Curse { get => _curse; set => _curse = value; }
 
         public override string ToString()
