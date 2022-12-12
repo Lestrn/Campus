@@ -112,6 +112,10 @@ namespace Campus
             {
                 throw new ArgumentException("Room with that number wasnt found");
             }
+            if (_students.ContainsKey(student.Key.ToString()))
+            {
+                throw new ArgumentException("Student with this key already exists!");
+            }
             List<Student> studentsLivingInCurrentRoom = _roomStudents[roomNumber];
             foreach (var studentRoom in studentsLivingInCurrentRoom)
             {
@@ -119,6 +123,7 @@ namespace Campus
                 {
                     throw new ArgumentException("Peope with two different genders cant live in the same room");
                 }
+                break;
             }
             if (_roomStudents[roomNumber].Count == (int)_rooms[roomNumber - 1].Type)
             {
