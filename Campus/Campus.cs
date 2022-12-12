@@ -63,6 +63,20 @@ namespace Campus
             {
                 throw new ArgumentException("Incorrent amount of rooms / workers");
             }
+            for (int i = 0; i < workers.Length; i++)
+            {
+                for (int j = 0; j < workers.Length; j++)
+                {
+                    if(i == j)
+                    {
+                        continue;
+                    }
+                    if(workers[i].IndicatorNumber.ToString() == workers[j].IndicatorNumber.ToString())
+                    {
+                        throw new ArgumentException("Two or more workers have the same indicator number");
+                    }
+                }
+            }
             bool[] allPositionsExist = {false, false, false, false};
             Position[] positions = { Position.zavgosp, Position.guardian, Position.commandant, Position.cleaner };
             for (int i = 0; i < positions.Length; i++)
